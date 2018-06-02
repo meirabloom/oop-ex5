@@ -15,7 +15,7 @@ public class SizeOrder extends Order {
                 double o2Size = o2.length() / CONVERT_TO_KB;
                 return o1 < o2 ? -1 : o1 == o2 ? 0 : 1;
                 }
-            }
-        };
+            };
+        }
     }
-}
+
