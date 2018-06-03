@@ -1,8 +1,8 @@
 package fileprocessing.Filter;
 
-public class File extends TextFilter {
+public class FileFilter extends TextFilter {
 
-    public File(String value, int filterLine, boolean hasNot) {
+    public FileFilter(String value, int filterLine, boolean hasNot) {
         super(value, filterLine, hasNot);
     }
 

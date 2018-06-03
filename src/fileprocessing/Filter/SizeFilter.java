@@ -4,9 +4,10 @@ import java.io.File;
 import java.util.List;
 
 public abstract class SizeFilter extends Filter {
-
+    final static int oneKbTobytes = 1024;
     double value;
     double antherValue;
+    boolean isBetween = false;
 
 
     public SizeFilter (double value, int filterLine, boolean hasNot){
@@ -20,6 +21,7 @@ public abstract class SizeFilter extends Filter {
         this.hadNot = hasNot;
         this.value = value;
         this.antherValue = antherValue;
+        this.isBetween= true;
     }
 
     @Override
@@ -27,14 +29,12 @@ public abstract class SizeFilter extends Filter {
 
     @Override
     public boolean hasWarning() {
-        if (value > 0){
-            return false;
+        if (value < 0){
+            return true;
         }
-        if (antherValue > value){
-            return false;
+        if (isBetween){
+            return  ((antherValue < value) || (antherValue < 0));
         }
-        return true;
+        return false;
     }
-
-
 }

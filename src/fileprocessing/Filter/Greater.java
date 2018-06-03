@@ -10,6 +10,12 @@ public class Greater extends SizeFilter {
 
         @Override
     public boolean doFilter(File file) {
-        return false;
+            if (this.hasWarning()){
+                return true;
+            }
+            if (hadNot){
+                return (file.length()/oneKbTobytes) <= value;
+            }
+            return (file.length()/oneKbTobytes) > value;
     }
 }

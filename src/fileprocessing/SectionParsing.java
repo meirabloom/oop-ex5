@@ -12,8 +12,17 @@ public class SectionParsing {
 
     public void readCommandFile() throws FileNotFoundException {
 
+        try {
         File file = new File(this.commandFile);
-        BufferedReader lineFromFile = new BufferedReader(new FileReader(file));
+        BufferedReader read = new BufferedReader(new FileReader(file));
+        String lineFromFile;
+        lineFromFile = read.readLine();
+
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
