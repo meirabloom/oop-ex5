@@ -7,7 +7,5 @@ public class OrderFactory {
     private static final String SIZE = "size";
     private static final String REVERSE = "REVERSE";
 
-    void createOrder(String orderMethod ){
-        return;
-    }
+    Order createOrder(String orderMethod, )
 }

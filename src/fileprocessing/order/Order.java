@@ -7,9 +7,16 @@ import java.util.List;
 
 public abstract class Order {
 
+    //the type of order in which to sort the files by//
     Comparator<File> orderBy;
 
-    public void orderFiles(List<File> filesToOrder){
+    //true if the sorting is done in reverse, false otherwise
+    boolean toReverse;
+
+    public void orderFiles(List<File> filesToOrder) {
+        if (toReverse) {
+            filesToOrder.sort(orderBy.reversed());
+        }
         filesToOrder.sort(orderBy);
     }
 }

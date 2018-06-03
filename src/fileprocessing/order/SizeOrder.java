@@ -13,9 +13,8 @@ public class SizeOrder extends Order {
             public int compare(File o1, File o2) {
                 double o1Size = o1.length() / CONVERT_TO_KB ;
                 double o2Size = o2.length() / CONVERT_TO_KB;
-                return o1 < o2 ? -1 : o1 == o2 ? 0 : 1;
+                return o1Size < o2Size ? -1 : o1 == o2 ? 0 : 1;
                 }
-            };
-        }
+        };
     }
-
+}
