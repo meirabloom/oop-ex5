@@ -1,6 +1,8 @@
 package fileprocessing.Filter;
 
-public class FilterAll extends Filter{
+public class SizeFilter extends Filter {
+
+
     @Override
     public void doFilter() {
 

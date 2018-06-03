@@ -1,6 +1,6 @@
 package fileprocessing.Filter;
 
-public class FilterAll extends Filter{
+public class BooleanFilter extends Filter {
     @Override
     public void doFilter() {
 
