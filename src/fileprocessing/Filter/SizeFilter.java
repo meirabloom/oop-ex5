@@ -1,10 +1,23 @@
 package fileprocessing.Filter;
 
+import java.io.File;
+import java.util.List;
+
 public class SizeFilter extends Filter {
 
 
     @Override
-    public void doFilter() {
+    public boolean doFilter(File file) {
+        return true;
+    }
+
+    @Override
+    public boolean hasWarning() {
+        return false;
+    }
+
+    @Override
+    public void printWarning() {
 
     }
 }

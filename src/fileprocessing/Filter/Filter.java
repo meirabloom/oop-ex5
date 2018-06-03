@@ -8,7 +8,7 @@ public abstract class Filter {
     int filterLineNumber;
     boolean hadNot;
 
-    public abstract List<File> doFilter();
+    public abstract boolean doFilter(File file);
 
     public abstract boolean hasWarning();
 
