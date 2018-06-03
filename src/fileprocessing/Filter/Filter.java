@@ -12,6 +12,10 @@ public abstract class Filter {
 
     public abstract boolean hasWarning();
 
-    public abstract void printWarning();
+    public void printWarning(){
+        if (hasWarning()){
+            System.err.println("Warning in line "+filterLineNumber);
+        }
+    }
 
 }

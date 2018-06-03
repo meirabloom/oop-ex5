@@ -2,22 +2,22 @@ package fileprocessing.Filter;
 
 import java.io.File;
 
-public class TextFilter extends Filter {
+public abstract class TextFilter extends Filter {
 
+    String value;
+
+    public TextFilter (String value, int filterLine, boolean hasNot){
+        this.filterLineNumber = filterLine;
+        this.hadNot = hasNot;
+        this.value = value;
+    }
 
     @Override
-    public boolean doFilter(File file) {
-        return false;
-    }
+    public abstract boolean doFilter(File file);
 
     @Override
     public boolean hasWarning() {
         return false;
-    }
-
-    @Override
-    public void printWarning() {
-
     }
 
 }
