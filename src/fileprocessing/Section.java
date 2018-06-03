@@ -41,5 +41,6 @@ public class Section {
         if (myFilter.hasWarning()){
             myFilter.printWarning();
         }
+        //todo hasWarning, printWarning for order
     }
 }
