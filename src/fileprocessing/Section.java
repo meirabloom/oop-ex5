@@ -5,19 +5,18 @@ import fileprocessing.order.Order;
 
 import java.lang.reflect.Array;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Section {
 
     Filter myFilter;
     Order myOrder;
-    ArrayList<File> filteredFile;
+    List<File> filteredFile;
 
     Section(Filter filter, Order order){
         this.myFilter = filter;
         this.myOrder = order;
-        ArrayList<File> filteredFile = new ArrayList<>();
     }
 
     void getFile(File sourceDir){
@@ -31,9 +30,8 @@ public class Section {
     }
 
     void printFile(){
-        Iterator filesInOrder = filteredFile.iterator();
-        while (filesInOrder.hasNext()){
-            System.out.println(filesInOrder.next().toString());
+        for (Object aFilteredFile : filteredFile) {
+            System.out.println(aFilteredFile.toString());
         }
     }
 
