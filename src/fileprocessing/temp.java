@@ -21,6 +21,7 @@ public class temp {
         };
         list.sort(c);
         System.out.println(list);
+        System.out.println(list);
 
     }
 
