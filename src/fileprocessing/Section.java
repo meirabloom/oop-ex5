@@ -35,7 +35,7 @@ public class Section {
         }
     }
 
-    void getWarning(){
+    void printWarning(){
         if (myFilter.hasWarning()){
             myFilter.printWarning();
         }
