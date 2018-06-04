@@ -26,20 +26,26 @@ public class SectionParsing {
     }
 
     public List<Section> readCommandFile() {
+
         int counter =1;
         try (FileReader fileReader = new FileReader(this.commandFile)){
             BufferedReader read = new BufferedReader(fileReader);
             String lineFromFile;
             lineFromFile = read.readLine();
+
             while (lineFromFile != null) {
+                //  Filter
                 if (lineFromFile.equals(filter)) {
                     filterLine = read.readLine();
                     counter++;
                     filterLineNum = counter;
                     sectionFilter = filterFactory.findFilter(filterLine, filterLineNum);
-                } else {
+                }
+                else { //  if the word FILTER is not the first line in the sub-Section
                     return null; //TODO: 04/06/2018 להוסיף שגיאה
                 }
+
+                //  Order
                 lineFromFile = read.readLine();
                 counter++;
                 if (lineFromFile.equals(order)){
@@ -58,7 +64,7 @@ public class SectionParsing {
                         //sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
                         // TODO: 04/06/2018 ask how she did this
                     }
-                }else {
+                }else {  //  if the word ORDER is not the first line in the sub-Section
                     return null; // TODO: 04/06/2018 להוסיף שגיאה
                 }
                 sectionList.add(new Section(sectionFilter,sectionOrder));
