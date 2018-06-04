@@ -1,4 +1,6 @@
-package fileprocessing.order;
+package fileprocessing;
+import fileprocessing.order.*;
+
 
 public class OrderFactory {
 
@@ -9,7 +11,7 @@ public class OrderFactory {
     private static final String EMPTY_COMMAND = " ";
     private static final String REVERSE = "REVERSE";
 
-    Order createOrder(String orderMethod){
+    public Order createOrder(String orderMethod){
         String[] args = orderMethod.split(HASHTAG);
         boolean toReverse = args[args.length - 1].equals(REVERSE);
         switch (args[0]){
