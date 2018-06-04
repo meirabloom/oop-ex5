@@ -23,7 +23,11 @@ public class FilterFactory {
     private final static String all = "all";
 
 
-    public Filter FilterFactory(String filterLine, int filterLineNum) {
+
+
+    public FilterFactory() { }
+
+    public Filter findFilter(String filterLine, int filterLineNum){
         String[] separatedFilter = filterLine.split(separator);
         boolean hasNot = hasNot(separatedFilter);
 
@@ -65,7 +69,7 @@ public class FilterFactory {
                 return new FilterAll(filterLineNum, hasNot, false);
             }
         }
-    return new FilterAll(filterLineNum, hasNot, true);
+        return new FilterAll(filterLineNum, hasNot, true);
     }
 
     private boolean hasNot(String[] filterLine){
