@@ -5,6 +5,7 @@ import fileprocessing.order.Order;
 
 import java.lang.reflect.Array;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -20,18 +21,19 @@ public class Section {
     }
 
     void getFile(File sourceDir){
+        filteredFile = new ArrayList<>();
         File[] sourceDirFiles = sourceDir.listFiles(File::isFile);
         for (File file : sourceDirFiles) {
             if (myFilter.doFilter(file)) {
                 filteredFile.add(file);
             }
         }
-        myOrder.orderFiles(filteredFile);
+//        myOrder.orderFiles(filteredFile);
     }
 
     void printFile(){
-        for (Object aFilteredFile : filteredFile) {
-            System.out.println(aFilteredFile.toString());
+        for (File aFilteredFile : filteredFile) {
+            System.out.println(aFilteredFile.getName());
         }
     }
 

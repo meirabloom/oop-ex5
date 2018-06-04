@@ -3,6 +3,7 @@ import fileprocessing.Filter.Filter;
 import fileprocessing.order.Order;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +28,7 @@ public class SectionParsing {
 
     public List<Section> readCommandFile() {
 
+        sectionList = new ArrayList<>();
         int counter =1;
         try (FileReader fileReader = new FileReader(this.commandFile)){
             BufferedReader read = new BufferedReader(fileReader);
@@ -61,6 +63,8 @@ public class SectionParsing {
                         return null;// TODO: 04/06/2018 להוסיף שגיאה
                     }
                     else {
+                        lineFromFile = read.readLine();
+                        counter++;
                         //sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
                         // TODO: 04/06/2018 ask how she did this
                     }
@@ -68,6 +72,7 @@ public class SectionParsing {
                     return null; // TODO: 04/06/2018 להוסיף שגיאה
                 }
                 sectionList.add(new Section(sectionFilter,sectionOrder));
+
             }
             return sectionList;
         }
