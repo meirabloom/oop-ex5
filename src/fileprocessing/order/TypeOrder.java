@@ -8,7 +8,8 @@ public class TypeOrder extends Order {
     private static final String SPLIT_BY = "\\.";
     private static final String NO_TYPE = " ";
 
-    public TypeOrder(){
+    public TypeOrder(boolean reverse){
+        super(reverse);
         orderBy = new Comparator<File>() {
             @Override
             public int compare(File o1, File o2) {

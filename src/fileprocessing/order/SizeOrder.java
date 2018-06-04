@@ -7,7 +7,8 @@ public class SizeOrder extends Order {
 
     private static final int CONVERT_TO_KB = 1024;
 
-    public SizeOrder(){
+    public SizeOrder(boolean reverse){
+        super(reverse);
         orderBy = new Comparator<File>() {
             @Override
             public int compare(File o1, File o2) {

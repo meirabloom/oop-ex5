@@ -13,6 +13,14 @@ public abstract class Order {
     //true if the sorting is done in reverse, false otherwise
     boolean toReverse;
 
+    public Order(){
+        this.toReverse = false;
+    }
+
+    public Order(boolean reverse){
+        this.toReverse = reverse;
+    }
+
     public void orderFiles(List<File> filesToOrder) {
         if (toReverse) {
             filesToOrder.sort(orderBy.reversed());

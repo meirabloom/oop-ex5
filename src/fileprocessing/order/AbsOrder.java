@@ -7,7 +7,8 @@ import java.util.List;
 
 public class AbsOrder extends Order {
 
-    public AbsOrder(){
+    public AbsOrder(boolean reverse){
+        super(reverse);
         orderBy = new Comparator<File>() {
             @Override
             public int compare(File o1, File o2) {
