@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.List;
 
 /**
- * This abstract class represents a Filter, that can be use to filter files
+ * This abstract class represents a Filter, todo that can be use to filter files
  */
 public abstract class Filter {
 

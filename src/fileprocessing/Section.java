@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Section {
 
-    Filter myFilter;
-    Order myOrder;
-    List<File> filteredFile;
+    private Filter myFilter;
+    private Order myOrder;
+    private List<File> filteredFile;
 
     Section(Filter filter, Order order){
         this.myFilter = filter;
