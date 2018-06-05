@@ -64,9 +64,6 @@ public class SectionParsing {
                         orderLine ="";
                         sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
                     }
-                    else if (orderLine.equals(ORDER)){
-                        return null;
-                    }
                     else {
                         lineFromFile = read.readLine();
                         counter++;
