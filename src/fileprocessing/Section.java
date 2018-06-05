@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * This class represents a sub-Section, that counties it's filter and order, and when given sourceDir file
+ * filter it and orders the felted files
+ */
 public class Section {
 
     private Filter myFilter;
