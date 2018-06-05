@@ -54,16 +54,28 @@ public class FilterFactory {
                 break;
             }
             case file: {
-                return new FileFilter(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new FileFilter(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case contains: {
-                return new contains(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new contains(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case prefix: {
-                return new prefix(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new prefix(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case suffix: {
-                return new suffix(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new suffix(separatedFilter[value], filterLineNum, hasNot);
+                }
+            break;
             }
             case writable: {
                 if (separatedFilter.length >= 2) {
