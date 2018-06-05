@@ -45,7 +45,11 @@ public abstract class SizeFilter extends Filter {
     @Override
     public abstract boolean doFilter(File file);
 
-    @Override
+    /**
+     * checks if there is a problem with the filter line , value are not negtive numbers, or in the case of
+     * Between filter if the lower bond is bigger than the higher bond.
+     * @return true if there is a problem with the filter line, false otherwise
+     */
     public boolean hasWarning() {
         if (value < 0){
             return true;
