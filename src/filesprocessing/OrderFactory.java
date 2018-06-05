@@ -20,7 +20,8 @@ public class OrderFactory {
                 return new SizeOrder(toReverse, lineNum);
             case TYPE:
                 return new TypeOrder(toReverse,lineNum);
-            case "null": new AbsOrder(false,lineNum);
+            case "":
+                return new AbsOrder(false,lineNum);
             default:
                 return new AbsOrder(lineNum);
         }

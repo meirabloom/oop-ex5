@@ -34,7 +34,13 @@ public abstract class BooleanFilter extends Filter {
      * @return true if there is a problem with the filter line, false otherwise
      */
     public boolean hasWarning() {
-        return value.equals(yes) || value.equals(no);
+        if (value.equals(yes)) {
+            return false;
+        }
+        if(value.equals(no)){
+            return false;
+        }
+        return true;
     }
 
      boolean valueIsYes(){

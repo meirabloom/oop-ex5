@@ -33,16 +33,25 @@ public class FilterFactory {
 
         switch (separatedFilter[filer]) {
             case greater_than: {
-                return new Greater(Double.parseDouble(separatedFilter[value]), filterLineNum,
-                        hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new Greater(Double.parseDouble(separatedFilter[value]), filterLineNum,
+                            hasNot);
+                }
+                break;
             }
             case between: {
-                return new between(Double.parseDouble(separatedFilter[value]),
-                        Double.parseDouble(separatedFilter[antherValue]), filterLineNum, hasNot);
+                if (separatedFilter.length >= 3) {
+                    return new between(Double.parseDouble(separatedFilter[value]),
+                            Double.parseDouble(separatedFilter[antherValue]), filterLineNum, hasNot);
+                }
+                break;
             }
             case smaller_than: {
-                return new smaller(Double.parseDouble(separatedFilter[value]), filterLineNum,
-                        hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new smaller(Double.parseDouble(separatedFilter[value]), filterLineNum,
+                            hasNot);
+                }
+                break;
             }
             case file: {
                 return new FileFilter(separatedFilter[value], filterLineNum, hasNot);
@@ -57,13 +66,22 @@ public class FilterFactory {
                 return new suffix(separatedFilter[value], filterLineNum, hasNot);
             }
             case writable: {
-                return new writable(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new writable(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case executable: {
-                return new executable(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new executable(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case hidden: {
-                return new hidden(separatedFilter[value], filterLineNum, hasNot);
+                if (separatedFilter.length >= 2) {
+                    return new hidden(separatedFilter[value], filterLineNum, hasNot);
+                }
+                break;
             }
             case all: {
                 return new FilterAll(filterLineNum, hasNot, false);

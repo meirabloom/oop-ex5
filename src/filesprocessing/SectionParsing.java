@@ -56,7 +56,7 @@ public class SectionParsing {
                     orderLineNum =counter;
                     if (orderLine == null){
                         lineFromFile = orderLine;
-                        orderLine = "null";
+                        orderLine ="";
                         sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
                     }
                     if (orderLine.equals(FILTER)){

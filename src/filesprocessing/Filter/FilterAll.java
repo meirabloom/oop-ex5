@@ -26,7 +26,13 @@ public class FilterAll extends Filter{
 
     @Override
     public boolean doFilter(File file) {
-        return hasWarning() || !hadNot;
+        if (hasWarning()){
+            return true;
+        }
+        if (hadNot){
+            return false;
+        }
+        return true;
     }
 
     /**

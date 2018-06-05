@@ -30,7 +30,7 @@ public class between extends SizeFilter {
             return true;
         }
         if (hadNot){
-            return fileSize > value || fileSize < antherValue;
+            return fileSize < value || fileSize > antherValue;
         }
         return fileSize >= value && fileSize <= antherValue;
     }
