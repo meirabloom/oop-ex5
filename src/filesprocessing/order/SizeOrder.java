@@ -12,8 +12,8 @@ public class SizeOrder extends Order {
         orderBy = new Comparator<File>() {
             @Override
             public int compare(File o1, File o2) {
-                double o1Size = o1.length() / CONVERT_TO_KB;
-                double o2Size = o2.length() / CONVERT_TO_KB;
+                long o1Size = o1.length() ;// CONVERT_TO_KB;
+                long o2Size = o2.length() ;// CONVERT_TO_KB;
                 if (!(o1Size == o2Size)) {
                     return o1Size < o2Size ? -1 : 1;
                 }

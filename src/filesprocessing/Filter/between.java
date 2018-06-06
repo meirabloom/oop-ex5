@@ -25,13 +25,13 @@ public class between extends SizeFilter {
 
     @Override
     public boolean doFilter(File file) {
-        fileSize = file.length()/oneKbTobytes;
+        fileSize = file.length();
         if (this.hasWarning()){ //if has warning than the filer became an all filter - true for all
             return true;
         }
         if (hadNot){
-            return fileSize < value || fileSize > antherValue;
+            return fileSize < value *oneKbTobytes || fileSize > antherValue *oneKbTobytes;
         }
-        return fileSize >= value && fileSize <= antherValue;
+        return fileSize >= value *oneKbTobytes && fileSize <= antherValue *oneKbTobytes;
     }
 }

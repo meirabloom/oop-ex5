@@ -28,8 +28,8 @@ public class smaller extends SizeFilter {
             return true;
         }
         if (hadNot){
-            return (file.length()/oneKbTobytes) >= value;
+            return file.length() >= value *oneKbTobytes;
         }
-        return (file.length()/oneKbTobytes) < value;
+        return file.length() < value*oneKbTobytes;
     }
 }
