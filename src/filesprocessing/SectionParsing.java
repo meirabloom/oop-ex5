@@ -9,13 +9,12 @@ import java.util.List;
 
 public class SectionParsing {
 
+    private final static String ERROR = "ERROR: ";
     private final static String FILTER = "FILTER";
     private final static String ORDER = "ORDER";
-    private final static String ERROR = "ERROR";
-    private String filterLine;
-    private String orderLine;
-    private int filterLineNum;
-    private int orderLineNum;
+    private final static String BAD_SUBSECTION_NAME = "Bad subsection name";
+    private final static String FILE_NOT_FOUND_EXCEPTION = "FILE_NOT_FOUND_EXCEPTION";
+    private final static String IOException = "IOException";
     private File commandFile;
     private Filter sectionFilter;
     private Order sectionOrder;
@@ -27,61 +26,75 @@ public class SectionParsing {
         this.commandFile = commandFile;
     }
 
-    public List<Section> readCommandFile() {
+    public List<Section> readCommandFile() throws IOException {
 
         sectionList = new ArrayList<>();
         int counter = 1;
-        try (FileReader fileReader = new FileReader(this.commandFile)){
-            BufferedReader read = new BufferedReader(fileReader);
-            String lineFromFile;
-            lineFromFile = read.readLine();
-
+        FileReader fileReader = new FileReader(this.commandFile);
+        BufferedReader read = new BufferedReader(fileReader);
+        String lineFromFile;
+        lineFromFile = read.readLine();
+        try {
             while (lineFromFile != null) {
-                //  Filter
-                if (lineFromFile.equals(FILTER)) {
-                    filterLine = read.readLine();
-                    counter++;
-                    filterLineNum = counter;
-                    sectionFilter = filterFactory.findFilter(filterLine, filterLineNum);
-                }
-                else { //  if the word FILTER is not the first line in the sub-Section
-                    return null;
-                }
-                //  Order
-                lineFromFile = read.readLine();
-                counter++;
-                if (lineFromFile.equals(ORDER)){
-                    orderLine = read.readLine();
-                    counter++;
-                    orderLineNum =counter;
-                    if (orderLine == null){
-                        lineFromFile = orderLine;
-                        orderLine ="";
-                        sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
-                    }
-                    if (orderLine.equals(FILTER)){
-                        lineFromFile = orderLine;
-                        orderLine ="";
-                        sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
-                    }
-                    else {
-                        lineFromFile = read.readLine();
+                    //  Filter
+                    if (lineFromFile.equals(FILTER)) {
+                        String filterLine = read.readLine();
+                        if (filterLine == null){ //if filter Line is null we chang it so filterFactory does
+                            //get null , and the sub-section will get "Bad subsection name" when ORDER will
+                            //be null.
+                            filterLine = "";
+                        }
                         counter++;
-                        sectionOrder = orderFactory.createOrder(orderLine,orderLineNum);
+                        int filterLineNum = counter;
+                        sectionFilter = filterFactory.findFilter(filterLine, filterLineNum);
+                    } else { //  if the word FILTER is not the first line in the sub-Section
+                        System.err.println(ERROR + BAD_SUBSECTION_NAME);
+                        return null;
                     }
-                }else {  //  if the word ORDER is not the first line in the sub-Section
+                    //  Order
+                    lineFromFile = read.readLine();
+                    counter++;
+                    if (lineFromFile == null){
+                        System.err.println(ERROR + BAD_SUBSECTION_NAME);
+                        return null;
+                    }
+                    if (lineFromFile.equals(ORDER)) {
+                        String orderLine = read.readLine();
+                        counter++;
+                        int orderLineNum = counter;
+                        if (orderLine == null || orderLine.equals(FILTER)) {// todo - i don't know if this is
+                            // a legal move
+                            lineFromFile = orderLine;
+                            orderLine = "";
+                            sectionOrder = orderFactory.createOrder(orderLine, orderLineNum);
+                        }
+//                        else if (orderLine.equals(FILTER)) {
+//                            lineFromFile = orderLine;
+//                            orderLine = "";
+//                            sectionOrder = orderFactory.createOrder(orderLine, orderLineNum);
+                         else {
+                            lineFromFile = read.readLine();
+                            counter++;
+                            sectionOrder = orderFactory.createOrder(orderLine, orderLineNum);
+                        }
+                    } else {  //  if the word ORDER is not the first line in the sub-Section
+                        System.err.println(ERROR + ": " + BAD_SUBSECTION_NAME);
+                        return null;
+                    }
+                    sectionList.add(new Section(sectionFilter, sectionOrder));
+                }
+            read.close();
+        }
+                catch (FileNotFoundException e) {
+                    System.err.println(ERROR +FILE_NOT_FOUND_EXCEPTION);
                     return null;
                 }
-                sectionList.add(new Section(sectionFilter,sectionOrder));
+                catch (IOException e) {
+                    System.err.println(ERROR +IOException);
+                    return null;
+                }
 
-            }
             return sectionList;
         }
-        catch (FileNotFoundException e) {
-            System.err.println(ERROR+": FileNotFoundException");
-        } catch (IOException e) {
-            System.err.println(ERROR+": IOException");
-        }
-        return null;
-    }
+
 }
