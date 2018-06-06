@@ -1,0 +1,90 @@
+elitali94
+meira.bloom
+
+=============================
+=      File description     =
+=============================
+BinarySearchTree.java - An abstract class that has the common methods attributed to binary search trees, as
+well as a nested class AvlNodes, representing the nodes of the binary search tree.
+AvlTree.java - A class that extends the BinarySearchTree class and represents an AVL tree, implementing
+methods such as add and delete, all the while ensuring the tree is balanced.
+
+
+=============================
+=          Design           =
+=============================
+We chose to implement a class of a binary search tree, and have the AvlTree class extend it. This allows for
+more classes of type Binary Search Tree, such as red-black trees, splay trees, T-trees and and more to be
+implemented and use the methods they have in common that they inherited from the BinarySearchTree parent class
+we chose to implement the iterator in the class AvlTree, and have it be a nested class,because we thought it
+convenient in terms of packaging.
+In the BinarySearchTree class we implemented a class called AvlNode, that implements the the nodes of the tree
+ in the following manner: the nodes have access to their parent node, and their right node (=right son) and
+ left node (=left son). In addition, the nodes have data- that is the value attributed to each node.
+The nodes are specific to the binary search trees, and the class is relatively small, making it ideal to be a
+nested class. In addition, making the AvlNode class nested instead of separating it, ensured that the
+enclosing class had access to all of the classes private methods, instead of implementing getter methods.
+When adding or deleting nodes to the AVL tree, we do it in such a way that the tree stays balanced: by keeping
+ track of the subtrees heights, and rotating the nodes to keep the balance.
+the nested class have a default modifier, making them package private, which doesnt change the api.
+=============================
+=  Implementation details   =
+=============================
+add() - The add function first checks if the given value is already  in the tree, by running the contains
+method, and if it is, returns false. If not, it searches for the new location that the node needs to be placed
+ at. once found, creates a new node, and attaches it to the tree. updates the height of tree, starting from
+ the new node, up to the root. also updates the size variable representing the number of nodes in the tree, to
+  now include the new node.
+  now we check if the tree is balanced, from the new node up to the root, and balance the tree when necessary.
+  we created many methods to perform the different tasks.
+
+delete() - we implemented this method using the information we learned in DAST. The process of deleting a node
+ from the tree differs according to the placement in the tree of the node we want to delete. In order to
+ simplify matters, we chose to address each of the options separately, by assigning a method for each of the
+ following situations:
+say we want to delete the node x from the tree:
+-if x is a leaf, we want its parent to point to null instead of to x.
+-if x has one son, we want to replace x with its son, so now the father of x points to the son of x.
+-if x has two sons, we go to the subtree rooted in the right son of x, and find the node with the minimal
+value. this node represents the successor node to x, and it will replace x. this node is also the leftmost
+node in the subtree.
+First, we switch the data between the node we want to erase and the replacement nodes data. now we would like
+ to delete the replacement node. if the node is a leaf we call on the method that deletes a leaf node.
+ otherwise, we call on the method that deletes a node with one son.
+the 3 methods return a node that represents a root of the subtree we now wish to balance in order for the AVL
+tree to keep its attribute as a balanced Binary search tree.
+We also considered the situations in which the node we want to delete is a root, meaning it has no parent node.
+in the main delete() method, we call in the different methods according the the scenario, then call the method
+ that balanced the modified tree.
+
+=============================
+=    Answers to questions   =
+=============================
+1. Find a series of 12 numbers, such that when they are inserted into an empty AVL tree one-by-one, the result
+ will be a tree of height 4
+{10, 2, 14, 3, 16, 18, 6, 4, 11, 1, 15, 20}
+
+2. what is the asymptotic running time complexity of the tree construction done in AvlTree(int[] data)?
+O(n*log(n))
+explanation: adding a node into the tree is done in log(n) time, balancing the tree is also O(log(n)) time.
+there are n nodes. n * (log(n) + log(n)) ===> O(n*(log(n)))
+
+3. what is the asymptotic running time complexity of the tree construction done in AvlTree(AvlTree avlTree)?
+O(n*log(n)).
+explanation: the nodes are added one-by- one to the new tree, in order of smallest value to largest. this way,
+ the tree needs to be balanced once after two insertions (aside from when inserting the root) --> n*(log(n))
+
+4. what is the best possible running time complexity for a specific case?
+O(n)
+if the constructor converts the given tree to a sorted array, done in O(n) time, then we convert the array
+into an Avl tree, also O(n) time. O(n) + O(n) --> O(n).
+
+5. what is the asymptotic running time complexity of your implementation of the operation done in findMinNodes
+(int h)?
+is this the best possible asymptotic runtime?
+O(1)
+the method performs simple arithmetic actions, done in O(1) time, as well as uses methods from the library
+Math, that run in O(1) time as well.
+
+
+
