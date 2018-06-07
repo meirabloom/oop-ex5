@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents a sub-Section, that counties it's filter and order, and when given sourceDir file
- * filter it and orders the felted files
+ * This class represents a sub-Section, that contains it's filter and order, and when given sourceDir file
+ * filter it and orders the filtered files
  */
 public class Section {
 

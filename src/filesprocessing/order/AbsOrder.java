@@ -3,7 +3,9 @@ package filesprocessing.order;
 import java.io.File;
 import java.util.Comparator;
 
-
+/**
+ * a class extending the Order class, compares files by their absolute path
+ */
 public class AbsOrder extends Order {
 
     /**
