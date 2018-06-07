@@ -52,9 +52,10 @@ comparator to sort the files as required (and reverses of needed, using the reve
 =============================
 =    Answers to questions   =
 =============================
-exceptions: type 1 errors start by being checked DirectoryProcessor and in section. in section the warning
-gets delegated to Filter and Order.
-type 2 errors are handled in SectionParsing
+exceptions: type 1 errors start by being checked in the FilterFactory and OrderFactory, and
+once discovered, are kept track of in the Filter and Order objects, then the section object prints them out.
+type 2 errors are handled in SectionParsing and DirectoryProcessor, and after being discovered the program
+finished running.
 sorting matched files: in order to sort the files, we created an abstracts class Order, which sorts the
 files by the specified order using the sort method, and if reverse is required, sorts in the reverse order.
 each order class implements a comparator that compares each two files according to the order specifications.
