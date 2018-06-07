@@ -6,7 +6,7 @@ import java.io.File;
  * This abstract class represents a SizeFilter, that is a filter that determines by size
  */
 public abstract class SizeFilter extends Filter {
-    final static int oneKbTobytes = 1024;
+    final static int ONE_KB_TOBYTES = 1024;
     double value;
     double antherValue;
     boolean isBetween = false;

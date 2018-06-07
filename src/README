@@ -15,34 +15,35 @@ the file processing package contains two packages and the following files:
          filter:
 --Filter.java - an abstract class representing a filter
     between.java - returns the files that their size is between the given numbers
-    booleanFilter.java -
-    contains.java -
-    executable.java -
-    FileFilter.java -
-    Greater.java -
-    hidden.java -
-    prefix.java -
-    SizeFilter.java -
-    smaller.java -
-    suffix.java -
-    TextFilter.java -
-    writable.java -
+    booleanFilter.java - an abstract class representing the filters that filter by size
+    contains.java - returns the files thst contain the given value in the file name
+    executable.java - returns the files that have executable permission
+    FileFilter.java - determines if the file name equals to the given text
+    FilterAll - returns all the files
+    Greater.java - returns the files of size greater than a given value
+    hidden.java - returns the files that are hidden/not hidden
+    prefix.java - returns the files that have the given value as a prefix in their name
+    SizeFilter.java - an abstract class representing filters that filter by size
+    smaller.java - returns the files of size smaller than a given size
+    suffix.java - returns te files that have a given value as a suffix in their name
+    TextFilter.java - an abstract class representing the filters that filter by text
+    writable.java - returns the files that have writing permission
           order:
 --Order.java - an abstract class representing an order
-    AbsOrder.java -
-    SizeOrder.java -
-    TypeOrder.java -
+    AbsOrder.java - sorts files by absolute name
+    SizeOrder.java - sorts files according to size
+    TypeOrder.java - sorts files according to type
 
 
-=============================
-=          Design           =
-=============================
-
-=============================
-=  Implementation details   =
-=============================
+=============================================
+=    Design and Implementation details      =
+=============================================
+The
 
 =============================
 =    Answers to questions   =
 =============================
-sorting matched files:
+sorting matched files: in order to sort the files, we created an abstracts class Order, which sorts the
+files by the specified order using the sort method, and if reverse is required, sorts in the reverse order.
+each order class implements a comparator that compares each two files according to the order specifications.
+and the Order class uses the comparator when sorting.

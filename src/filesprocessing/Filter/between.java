@@ -30,8 +30,8 @@ public class between extends SizeFilter {
             return true;
         }
         if (hadNot){
-            return fileSize < value *oneKbTobytes || fileSize > antherValue *oneKbTobytes;
+            return fileSize < value * ONE_KB_TOBYTES || fileSize > antherValue * ONE_KB_TOBYTES;
         }
-        return fileSize >= value *oneKbTobytes && fileSize <= antherValue *oneKbTobytes;
+        return fileSize >= value * ONE_KB_TOBYTES && fileSize <= antherValue * ONE_KB_TOBYTES;
     }
 }

@@ -2,8 +2,8 @@ package filesprocessing.Filter;
 
 import java.io.File;
 /**
- * This class represents a contains Filter, that is a filter that determines if or if not the file name contains
- * the given text
+ * This class represents a contains Filter, that is a filter that determines if or if not the file name
+ * contains the given text
  */
 
 public class contains extends TextFilter {
