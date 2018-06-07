@@ -2,105 +2,117 @@ package filesprocessing;
 
 import filesprocessing.Filter.*;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+ * The filter factory, receives a String and returns the proper filter to it. if the String isn’t valid it
+ * returns the All Filter.
+ */
 public class FilterFactory {
 
-    private final static String not = "NOT";
-    private final static String separator = "#";
-    private final static int filer = 0;
-    private final static int value = 1;
-    private final static int antherValue = 2;
+    private final static String NOT = "NOT";
+    private final static String SEPARATOR = "#";
+    private final static int FILER = 0;
+    private final static int VALUE = 1;
+    private final static int ANOTHER_VALUE = 2;
+    private final static int LENGTH_OF_TWO = 2;
+    private final static int LENGTH_OF_THREE = 3;
 
-    private final static String greater_than = "greater_than";
-    private final static String between = "between";
-    private final static String smaller_than = "smaller_than";
-    private final static String file = "file";
-    private final static String contains = "contains";
-    private final static String prefix = "prefix";
-    private final static String suffix = "suffix";
-    private final static String writable = "writable";
-    private final static String executable = "executable";
-    private final static String hidden = "hidden";
-    private final static String all = "all";
+    private final static String GREATER_THAN = "greater_than";
+    private final static String BETWEEN = "between";
+    private final static String SMALLER_THAN = "smaller_than";
+    private final static String FILE = "file";
+    private final static String CONTAINS = "contains";
+    private final static String PREFIX = "prefix";
+    private final static String SUFFIX= "suffix";
+    private final static String WRITABLE = "writable";
+    private final static String EXECUTABLE = "executable";
+    private final static String HIDDEN = "hidden";
+    private final static String ALL = "all";
 
 
-
-
+    /**
+     * default constructor
+     */
     public FilterFactory() { }
 
+    /**
+     * returns the required filter according to the string command
+     * @param filterLine - a string representing the required filter
+     * @param filterLineNum - the line number of the required filter
+     * @return Filter object
+     */
     public Filter findFilter(String filterLine, int filterLineNum){
-        String[] separatedFilter = filterLine.split(separator);
-        boolean hasNot = separatedFilter[separatedFilter.length - 1].equals(not);
+        String[] separatedFilter = filterLine.split(SEPARATOR);
+        boolean hasNot = separatedFilter[separatedFilter.length - 1].equals(NOT);
         if (hasNot){
              separatedFilter =Arrays.copyOfRange(separatedFilter , 0 ,separatedFilter.length-1);
         }
-        switch (separatedFilter[filer]) {
-            case greater_than: {
-                if (separatedFilter.length == 2) {
-                    return new Greater(Double.parseDouble(separatedFilter[value]), filterLineNum,
+        switch (separatedFilter[FILER]) {
+            case GREATER_THAN: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new Greater(Double.parseDouble(separatedFilter[VALUE]), filterLineNum,
                             hasNot);
                 }
                 break;
             }
-            case between: {
-                if (separatedFilter.length == 3) {
-                    return new between(Double.parseDouble(separatedFilter[value]),
-                            Double.parseDouble(separatedFilter[antherValue]), filterLineNum, hasNot);
+            case BETWEEN: {
+                if (separatedFilter.length == LENGTH_OF_THREE) {
+                    return new between(Double.parseDouble(separatedFilter[VALUE]),
+                            Double.parseDouble(separatedFilter[ANOTHER_VALUE]), filterLineNum, hasNot);
                 }
                 break;
             }
-            case smaller_than: {
-                if (separatedFilter.length == 2) {
-                    return new smaller(Double.parseDouble(separatedFilter[value]), filterLineNum,
+            case SMALLER_THAN: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new smaller(Double.parseDouble(separatedFilter[VALUE]), filterLineNum,
                             hasNot);
                 }
                 break;
             }
-            case file: {
-                if (separatedFilter.length == 2) {
-                    return new FileFilter(separatedFilter[value], filterLineNum, hasNot);
+            case FILE: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new FileFilter(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case contains: {
-                if (separatedFilter.length == 2) {
-                    return new contains(separatedFilter[value], filterLineNum, hasNot);
+            case CONTAINS: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new contains(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case prefix: {
-                if (separatedFilter.length == 2) {
-                    return new prefix(separatedFilter[value], filterLineNum, hasNot);
+            case PREFIX: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new prefix(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case suffix: {
-                if (separatedFilter.length == 2) {
-                    return new suffix(separatedFilter[value], filterLineNum, hasNot);
+            case SUFFIX: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new suffix(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
             break;
             }
-            case writable: {
-                if (separatedFilter.length == 2) {
-                    return new writable(separatedFilter[value], filterLineNum, hasNot);
+            case WRITABLE: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new writable(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case executable: {
-                if (separatedFilter.length == 2) {
-                    return new executable(separatedFilter[value], filterLineNum, hasNot);
+            case EXECUTABLE: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new executable(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case hidden: {
-                if (separatedFilter.length == 2) {
-                    return new hidden(separatedFilter[value], filterLineNum, hasNot);
+            case HIDDEN: {
+                if (separatedFilter.length == LENGTH_OF_TWO) {
+                    return new hidden(separatedFilter[VALUE], filterLineNum, hasNot);
                 }
                 break;
             }
-            case all: {
+            case ALL: {
                 return new FilterAll(filterLineNum, hasNot, false);
             }
         }
