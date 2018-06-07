@@ -22,6 +22,7 @@ public class executable extends BooleanFilter {
         super(value, filterLine, hasNot);
     }
 
+
     @Override
     public boolean doFilter(File file) {
         if (this.hasWarning()) { //if has warning than the filer became an all filter - true for all

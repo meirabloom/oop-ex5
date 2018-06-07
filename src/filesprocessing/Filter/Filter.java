@@ -3,7 +3,7 @@ package filesprocessing.Filter;
 import java.io.File;
 
 /**
- * This abstract class represents a Filter,
+ * an abstract class representing a Filter
  */
 public abstract class Filter {
 
