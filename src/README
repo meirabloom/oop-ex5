@@ -39,15 +39,18 @@ the file processing package contains two packages and the following files:
 =    Design and Implementation details      =
 =============================================
 The The DirectoryProcessor receives a command file and the directory of the files. the DirectoryProcessor
-calls on the SectionParsing object, which divides the arguments in the command file into sections, each
-section containing the specific type of filter and order required. each section is now an object, and is in
-charge of its warnings. after being split into sections, the FilterFactory and OrderFactory determine what
-kind of filter and order to use, according to the command in the subsection.
+calls on the SectionParsing object, which divides the arguments in the command file into
+sections, each section containing the specific type of filter and order required, and instantiates filter and
+order objects according to the commands. this is done by the FilterFactory and OrderFactory, which determine
+what kind of filter and order to use, according to the command in the subsection. each section is now an
+object, and is in charge of its warnings.
+the DirectoryProcessor now goes over each section, adds the files from the directory, and prints the warnings
+and then the files according to the required filter and order.
 The Filter package has an abstract Filter class . it has 3 abstract classes representing the different  kinds
 of filters; size, name and permissions. it also has the classes representing each specific filter.
 The Order package has an abstract Order class, that sorts the files. each class inheriting Order implements a
 comparator that compares the two files according to the specifications, and the Order class uses the
-comparator to sort the files as required (and reverses of needed, using the reverse function).
+comparator to sort the files as required (and reverses if needed, using the reverse function).
 
 =============================
 =    Answers to questions   =
