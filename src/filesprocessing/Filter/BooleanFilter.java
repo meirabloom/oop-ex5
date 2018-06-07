@@ -8,8 +8,8 @@ import java.io.File;
  */
 public abstract class BooleanFilter extends Filter {
 
-    private final static String yes = "YES";
-    private final static String no = "NO";
+    private final static String YES = "YES";
+    private final static String NO = "NO";
     String value;
 
     //Constructor/
@@ -34,17 +34,17 @@ public abstract class BooleanFilter extends Filter {
      * @return true if there is a problem with the filter line, false otherwise
      */
     public boolean hasWarning() {
-        if (value.equals(yes)) {
+        if (value.equals(YES)) {
             return false;
         }
-        if(value.equals(no)){
+        if(value.equals(NO)){
             return false;
         }
         return true;
     }
 
      boolean valueIsYes(){
-        return value.equals(yes);
+        return value.equals(YES);
     }
 
 }
