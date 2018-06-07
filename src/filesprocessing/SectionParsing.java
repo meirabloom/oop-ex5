@@ -6,7 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * parses the command file and creates section objects
+ */
 public class SectionParsing {
 
     private final static String ERROR = "ERROR: ";
@@ -22,10 +24,19 @@ public class SectionParsing {
     private FilterFactory filterFactory = new FilterFactory();
     private OrderFactory orderFactory = new OrderFactory();
 
+    /**
+     * @param commandFile - the file with the commands
+     */
     public SectionParsing(File commandFile) {
         this.commandFile = commandFile;
     }
 
+    /**
+     * Creates a Section object with the types of Filter and Order Object that are required on order tp
+     * process the files
+     * @return - the section object
+     * @throws IOException - if the command file cannot be reached
+     */
     public List<Section> readCommandFile() throws IOException {
 
         sectionList = new ArrayList<>();
@@ -39,7 +50,7 @@ public class SectionParsing {
                     //  Filter
                     if (lineFromFile.equals(FILTER)) {
                         String filterLine = read.readLine();
-                        if (filterLine == null){ //if filter Line is null we chang it so filterFactory does
+                        if (filterLine == null){ //if filter Line is null we change it so filterFactory does
                             //get null , and the sub-section will get "Bad subsection name" when ORDER will
                             //be null.
                             filterLine = "";
