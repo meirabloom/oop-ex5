@@ -62,16 +62,11 @@ public class SectionParsing {
                         String orderLine = read.readLine();
                         counter++;
                         int orderLineNum = counter;
-                        if (orderLine == null || orderLine.equals(FILTER)) {// todo - i don't know if this is
-                            // a legal move
+                        if (orderLine == null || orderLine.equals(FILTER)) {
                             lineFromFile = orderLine;
                             orderLine = "";
                             sectionOrder = orderFactory.createOrder(orderLine, orderLineNum);
                         }
-//                        else if (orderLine.equals(FILTER)) {
-//                            lineFromFile = orderLine;
-//                            orderLine = "";
-//                            sectionOrder = orderFactory.createOrder(orderLine, orderLineNum);
                          else {
                             lineFromFile = read.readLine();
                             counter++;
