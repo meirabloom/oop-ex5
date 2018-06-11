@@ -22,6 +22,9 @@ public class DirectoryProcessor {
      * @param sourcedir - directory of files
      */
     public DirectoryProcessor(File commandfile, File sourcedir){
+        if (false){
+
+        }
        try {
            SectionParsing sectionParsing = new SectionParsing(commandfile);
            List<Section> sectionList = sectionParsing.readCommandFile();
